@@ -1,10 +1,12 @@
 "use client";
 import { MdLocationOn } from "react-icons/md";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import TextField from "@/app/Components/TextField";
 import SelectField from "@/app/Components/SelectField";
 import DateField from "@/app/Components/DateField";
 import PhoneField from "@/app/Components/PhoneField";
 import MultipleTextField from "@/app/Components/MultipleTextField";
+import Button from "@/app/Components/Button";
 
 export default function CreatePage() {
   return (
@@ -91,6 +93,30 @@ export default function CreatePage() {
           ]}
         />
       </div>
+
+      <Button
+        text="Enviar"
+        color="bg-blue-500"
+        icon={<FaArrowRight className="w-5 h-5" />}
+        onClick={() => console.log("Botón Enviar presionado")}
+        loading
+      />
+
+      <Button
+        text="Enviar"
+        color="bg-blue-500"
+        icon={<FaArrowRight className="w-5 h-5" />}
+        iconDirection="right"
+        onClick={() => console.log("Botón Enviar presionado")}
+        loading={false}
+      />
+
+      <Button
+        text="Regresar"
+        color="bg-gray-200 text-gray-400"
+        icon={<FaArrowLeft className="w-5 h-5" />}
+        onClick={() => console.log("Botón Regresar presionado")}
+      />
     </div>
   );
 }
