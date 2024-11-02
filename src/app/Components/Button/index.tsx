@@ -9,6 +9,7 @@ interface ButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   loading?: boolean;
+  className?: string;
 }
 
 const Button = ({
@@ -19,6 +20,7 @@ const Button = ({
   disabled = false,
   loading = false,
   iconDirection = "left",
+  className,
 }: ButtonProps) => {
   return (
     <button
@@ -27,6 +29,7 @@ const Button = ({
       className={classNames(
         "flex items-center justify-center p-4 rounded-md text-white font-medium transition-colors duration-300",
         color,
+        className,
         {
           "cursor-not-allowed bg-opacity-50": disabled || loading,
           "hover:bg-opacity-80": !disabled && !loading,

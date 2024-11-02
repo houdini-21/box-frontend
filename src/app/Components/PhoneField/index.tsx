@@ -10,6 +10,7 @@ interface PhoneFieldProps {
   onChange: (value: string) => void;
   error: boolean;
   errorMessage: string;
+  className?: string;
 }
 
 const PhoneField: React.FC<PhoneFieldProps> = ({
@@ -18,11 +19,12 @@ const PhoneField: React.FC<PhoneFieldProps> = ({
   onChange,
   error,
   errorMessage,
+  className,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <div className="flex flex-col gap-1 mt-2">
+    <div className={classNames("flex flex-col gap-1 mt-2", className)}>
       <label className="text-md text-gray-500 font-medium">{label}</label>
       <div
         className={classNames(

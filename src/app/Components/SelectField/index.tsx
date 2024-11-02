@@ -14,6 +14,7 @@ interface SelectFieldProps {
   onChange: (value: SelectComponentItem) => void;
   error: boolean;
   errorMessage: string;
+  className?: string;
 }
 
 const SelectField = ({
@@ -23,9 +24,10 @@ const SelectField = ({
   onChange,
   error,
   errorMessage,
+  className,
 }: SelectFieldProps) => {
   return (
-    <div className="flex flex-col gap-1 mt-2">
+    <div className={classNames("flex flex-col gap-1 w-full mt-2", className)}>
       <label className="text-md text-gray-500 font-medium">{label}</label>
       <Select
         id={nameInput}

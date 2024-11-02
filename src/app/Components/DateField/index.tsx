@@ -11,6 +11,7 @@ interface DateFieldProps {
   onChange: (date: Date | null) => void;
   error: boolean;
   errorMessage: string;
+  className?: string;
 }
 
 const DateField: React.FC<DateFieldProps> = ({
@@ -19,15 +20,18 @@ const DateField: React.FC<DateFieldProps> = ({
   onChange,
   error,
   errorMessage,
+  className,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <div className="flex flex-col gap-1 mt-2">
+    <div
+      className={classNames("flex flex-col items-start w-full mt-2", className)}
+    >
       <label className="text-md text-gray-500 font-medium">{label}</label>
       <div
         className={classNames(
-          "flex items-center border-2 rounded-md transition-all duration-200",
+          "flex items-center border-2 rounded-md transition-all duration-200 w-full",
           {
             "border-red-500 focus:ring-red-200": error,
             "border-blue-500 focus:ring-blue-200": !error && isFocused,

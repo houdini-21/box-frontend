@@ -10,6 +10,7 @@ interface TextFieldProps {
   type: "text" | "password" | "email" | "number";
   withIcon?: boolean;
   icon?: React.ReactNode;
+  className?: string;
 }
 
 const TextField = ({
@@ -22,11 +23,14 @@ const TextField = ({
   errorMessage,
   withIcon,
   icon,
+  className,
 }: TextFieldProps) => {
   return (
-    <div className="flex flex-row items-center gap-1 mt-2">
+    <div
+      className={classNames("flex flex-row items-center gap-1 mt-2", className)}
+    >
       {withIcon && (
-        <div className="flex items-center justify-center p-1 h-[52px] mt-4">
+        <div className="flex items-center justify-center h-[52px] mt-4">
           {icon}
         </div>
       )}
