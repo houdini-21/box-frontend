@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Providers } from "@/Store/Providers";
 import { Albert_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased ${albertSans.className}`}>{children}</body>
+      <body className={`antialiased ${albertSans.className}`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

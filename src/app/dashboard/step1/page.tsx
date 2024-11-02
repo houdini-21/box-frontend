@@ -1,5 +1,8 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
+import { useAppDispatch, useAppSelector } from "@/Store";
+import { updateForm } from "@/Store/Form/formSlice";
 import { MdLocationOn } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa";
 import TextField from "@/app/Components/TextField";
@@ -8,23 +11,34 @@ import DateField from "@/app/Components/DateField";
 import PhoneField from "@/app/Components/PhoneField";
 import Button from "@/app/Components/Button";
 
-export default function CreatePage() {
+export default function Step1Page() {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const form = useAppSelector((state) => state.form.form);
+
   const formik = useFormik({
     initialValues: {
-      date: new Date(),
-      address: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      recipientAddress: "",
-      department: "",
-      municipality: "",
-      zone: "",
-      instructions: "",
+      date: form.date ? new Date(form.date) : new Date(),
+      address: form.address || "",
+      firstName: form.firstName || "",
+      lastName: form.lastName || "",
+      email: form.email || "",
+      phone: form.phone || "",
+      recipientAddress: form.recipientAddress || "",
+      department: form.department || "",
+      municipality: form.municipality || "",
+      zone: form.zone || "",
+      instructions: form.instructions || "",
     },
     onSubmit: (values) => {
-      console.log(values);
+      dispatch(
+        updateForm({
+          ...values,
+          date: values.date.toISOString(),
+        })
+      );
+
+      router.push("/dashboard/step2");
     },
   });
 
@@ -180,115 +194,4 @@ export default function CreatePage() {
       />
     </div>
   );
-}
-
-{
-  /* <div>
-      <h1>Create Page</h1>
-      <TextField
-        label="Name"
-        type="text"
-        placeholder="Enter your name"
-        onChange={(e) => console.log(e)}
-        error={false}
-        errorMessage="This is helper text"
-        nameInput="name"
-      />
-
-      <TextField
-        label="Name"
-        type="text"
-        placeholder="Enter your name"
-        onChange={(e) => console.log(e)}
-        error={false}
-        errorMessage="This is helper text"
-        nameInput="name"
-        icon={<MdLocationOn className="text-gray-500 text-3xl" />}
-        withIcon
-      />
-
-      <SelectField
-        nameInput="categoria"
-        label="Categoría"
-        options={[
-          { value: "opcion1", label: "Opción 1" },
-          { value: "opcion2", label: "Opción 2" },
-          { value: "opcion3", label: "Opción 3" },
-        ]}
-        onChange={(e) => console.log(e)}
-        error={false}
-        errorMessage="Debe seleccionar una opción"
-      />
-
-      <DateField
-        label="Fecha de nacimiento"
-        selectedDate={new Date()}
-        onChange={(date) => console.log(date)}
-        error={false}
-        errorMessage="Debe seleccionar una fecha"
-      />
-
-      <PhoneField
-        label="Teléfono"
-        value=""
-        onChange={(e) => console.log(e)}
-        error={false}
-        errorMessage="Debe ingresar un número de teléfono"
-      />
-
-      <div className="w-3/12">
-        <MultipleTextField
-          items={[
-            {
-              label: "Name",
-              nameInput: "name",
-              placeholder: "Enter your name",
-              onChange: (value) => console.log(value),
-              type: "text",
-              measure: "cm",
-            },
-            {
-              label: "Name 2",
-              nameInput: "name",
-              placeholder: "Enter your name",
-              onChange: (value) => console.log(value),
-              type: "text",
-              measure: "cm",
-            },
-            {
-              label: "Name 3",
-              nameInput: "name",
-              placeholder: "Enter your name",
-              onChange: (value) => console.log(value),
-              type: "text",
-              measure: "cm",
-            },
-          ]}
-        />
-      </div>
-
-      <Button
-        text="Enviar"
-        color="bg-blue-500"
-        icon={<FaArrowRight className="w-5 h-5" />}
-        onClick={() => console.log("Botón Enviar presionado")}
-        loading
-      />
-
-      <Button
-        text="Enviar"
-        color="bg-blue-500"
-        icon={<FaArrowRight className="w-5 h-5" />}
-        iconDirection="right"
-        onClick={() => console.log("Botón Enviar presionado")}
-        loading={false}
-      />
-
-      <Button
-        text="Regresar"
-        color="bg-gray-200 text-gray-400"
-        icon={<FaArrowLeft className="w-5 h-5" />}
-        onClick={() => console.log("Botón Regresar presionado")}
-      />
-    </div> */
 }
