@@ -8,8 +8,8 @@ interface PhoneFieldProps {
   label: string;
   value: string;
   onChange: (value: string) => void;
-  error: boolean;
-  errorMessage: string;
+  error: string | boolean | undefined;
+  errorMessage: string | undefined;
   className?: string;
 }
 

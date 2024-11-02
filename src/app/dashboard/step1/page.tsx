@@ -7,10 +7,14 @@ import DateField from "@/app/Components/DateField";
 import PhoneField from "@/app/Components/PhoneField";
 import Button from "@/app/Components/Button";
 import { useFormLogic } from "./useFormLogic";
+import { useEffect } from "react";
 
 export default function Step1Page() {
   const { formik } = useFormLogic();
 
+  useEffect(() => {
+    console.log(formik.errors);
+  }, [formik.errors]);
   return (
     <div className="w-full flex flex-col lg:p-4 p-0">
       <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
@@ -20,8 +24,8 @@ export default function Step1Page() {
           placeholder="Ingrese la dirección de recolección"
           value={formik.values.address}
           onChange={formik.handleChange}
-          error={false}
-          errorMessage="This is helper text"
+          error={formik.errors.address && formik.touched.address}
+          errorMessage={formik.errors.address}
           nameInput="address"
           className="lg:w-9/12 w-full"
         />
@@ -30,8 +34,6 @@ export default function Step1Page() {
           label="📅 Fecha Programada"
           selectedDate={formik.values.date}
           onChange={(date) => formik.setFieldValue("date", date)}
-          error={false}
-          errorMessage="Debe seleccionar una fecha"
           className="lg:w-3/12 w-full"
         />
       </div>
@@ -43,8 +45,8 @@ export default function Step1Page() {
           placeholder="Ingrese los nombres"
           value={formik.values.firstName}
           onChange={formik.handleChange}
-          error={false}
-          errorMessage="This is helper text"
+          error={formik.errors.firstName && formik.touched.firstName}
+          errorMessage={formik.errors.firstName}
           nameInput="firstName"
           className="lg:w-4/12 w-full"
         />
@@ -55,8 +57,8 @@ export default function Step1Page() {
           placeholder="Ingrese los apellidos"
           value={formik.values.lastName}
           onChange={formik.handleChange}
-          error={false}
-          errorMessage="This is helper text"
+          error={formik.errors.lastName && formik.touched.lastName}
+          errorMessage={formik.errors.lastName}
           nameInput="lastName"
           className="lg:w-4/12 w-full"
         />
@@ -67,8 +69,8 @@ export default function Step1Page() {
           placeholder="Ingrese el correo electrónico"
           value={formik.values.email}
           onChange={formik.handleChange}
-          error={false}
-          errorMessage="This is helper text"
+          error={formik.errors.email && formik.touched.email}
+          errorMessage={formik.errors.email}
           nameInput="email"
           className="lg:w-4/12 w-full"
         />
@@ -79,8 +81,8 @@ export default function Step1Page() {
           label="Teléfono"
           value={formik.values.phone}
           onChange={(e) => formik.setFieldValue("phone", e)}
-          error={false}
-          errorMessage="Debe ingresar un número de teléfono"
+          error={formik.errors.phone && formik.touched.phone}
+          errorMessage={formik.errors.phone}
           className="lg:w-4/12 w-full"
         />
 
@@ -90,15 +92,16 @@ export default function Step1Page() {
           placeholder="Ingrese la dirección del destinatario"
           value={formik.values.recipientAddress}
           onChange={formik.handleChange}
-          error={false}
-          errorMessage="This is helper text"
+          error={
+            formik.errors.recipientAddress && formik.touched.recipientAddress
+          }
+          errorMessage={formik.errors.recipientAddress}
           nameInput="recipientAddress"
           icon={<MdLocationOn className="text-gray-500 text-3xl" />}
           withIcon
           className="lg:w-8/12 w-full"
         />
       </div>
-
       <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
         <SelectField
           nameInput="departamento"
@@ -110,8 +113,8 @@ export default function Step1Page() {
           ]}
           value={formik.values.department}
           onChange={(e) => formik.setFieldValue("department", e)}
-          error={false}
-          errorMessage="Debe seleccionar una opción"
+          error={formik.errors.department !== undefined}
+          errorMessage={formik.errors.department?.label}
           className="lg:w-4/12 w-full"
         />
         <SelectField
@@ -124,8 +127,8 @@ export default function Step1Page() {
           ]}
           value={formik.values.municipality}
           onChange={(e) => formik.setFieldValue("municipality", e)}
-          error={false}
-          errorMessage="Debe seleccionar una opción"
+          error={formik.errors.municipality !== undefined}
+          errorMessage={formik.errors.municipality?.label}
           className="lg:w-4/12 w-full"
         />
         <TextField
@@ -134,8 +137,8 @@ export default function Step1Page() {
           placeholder="Ingrese un punto de referencia"
           value={formik.values.zone}
           onChange={formik.handleChange}
-          error={false}
-          errorMessage="This is helper text"
+          error={formik.errors.zone && formik.touched.zone}
+          errorMessage={formik.errors.zone}
           nameInput="zone"
           className="lg:w-4/12 w-full"
         />
@@ -148,8 +151,8 @@ export default function Step1Page() {
           placeholder="Ingrese las indicaciones"
           value={formik.values.instructions}
           onChange={formik.handleChange}
-          error={false}
-          errorMessage="This is helper text"
+          error={formik.errors.instructions && formik.touched.instructions}
+          errorMessage={formik.errors.instructions}
           nameInput="instructions"
           className="w-full"
         />

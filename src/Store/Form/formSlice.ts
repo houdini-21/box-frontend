@@ -6,6 +6,7 @@ interface SelectOption {
 }
 
 interface FormListBox {
+  weight: number;
   length: number;
   height: number;
   width: number;
@@ -59,7 +60,10 @@ const formSlice = createSlice({
   initialState,
   reducers: {
     updateForm: (state, action: PayloadAction<FormStateItem>) => {
-      state.form = action.payload;
+      state.form = {
+        ...state.form,
+        ...action.payload,
+      };
     },
 
     clearForm: (state) => {
@@ -83,6 +87,7 @@ const formSlice = createSlice({
   },
 });
 
-export const { updateForm, clearForm } = formSlice.actions;
+export const { updateForm, clearForm, addListBox, removeListBox, editListBox } =
+  formSlice.actions;
 
 export default formSlice.reducer;

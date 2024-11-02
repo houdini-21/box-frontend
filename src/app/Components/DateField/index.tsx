@@ -8,8 +8,8 @@ interface DateFieldProps {
   label: string;
   selectedDate: Date | null;
   onChange: (date: Date | null) => void;
-  error: boolean;
-  errorMessage: string;
+  error?: boolean | undefined;
+  errorMessage?: string | undefined;
   className?: string;
 }
 

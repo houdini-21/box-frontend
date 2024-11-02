@@ -4,11 +4,11 @@ import classNames from "classnames";
 interface TextFieldProps {
   label: string;
   nameInput: string;
-  value: string;
+  value: string | number;
   placeholder: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
-  error: boolean;
-  errorMessage: string;
+  error: boolean | "" | undefined;
+  errorMessage: string | undefined;
   type: "text" | "password" | "email" | "number";
   withIcon?: boolean;
   icon?: React.ReactNode;

@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import { useAppDispatch, useAppSelector } from "@/Store";
 import { updateForm } from "@/Store/Form/formSlice";
+import validationSchema from "./validation";
 
 export const useFormLogic = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ export const useFormLogic = () => {
       zone: form.zone || "",
       instructions: form.instructions || "",
     },
+    validationSchema,
     onSubmit: (values) => {
       dispatch(
         updateForm({

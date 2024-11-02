@@ -13,8 +13,8 @@ interface SelectFieldProps {
   nameInput: string;
   options: SelectComponentItem[];
   onChange: (value: SelectComponentItem) => void;
-  error: boolean;
-  errorMessage: string;
+  error: boolean | undefined;
+  errorMessage: string | undefined;
   className?: string;
 }
 
@@ -40,21 +40,20 @@ const SelectField = ({
             ...provided,
             padding: "0.39rem",
             borderRadius: "0.375rem",
-            border: 0,
-            borderWidth: "2px",
+            borderWidth: "1px",
             borderColor: error
               ? "#ef4444"
               : state.isFocused
               ? "#3b82f6"
               : "#d1d5db",
-            boxShadow: state.isFocused
-              ? error
-                ? "0 0 0 2px #ef4444"
-                : "0 0 0 2px #3b82f6"
-              : "0 0 0 2px #d1d5db",
+            boxShadow: error
+              ? "0 0 0 1px #ef4444"
+              : state.isFocused
+              ? "0 0 0 1px #3b82f6"
+              : "0 0 0 1px #d1d5db",
             transition: "border-color 0.2s, box-shadow 0.2s",
             "&:hover": {
-              boxShadow: error ? "0 0 0 2px #ef4444" : "0 0 0 2px #9ca3af",
+              borderColor: error ? "#ef4444" : "#d1d5db",
             },
           }),
           placeholder: (provided) => ({
@@ -83,7 +82,6 @@ const SelectField = ({
             },
           }),
         }}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onChange={onChange as any}
         className={classNames("font-medium border-none", {
           "react-select-error": error,

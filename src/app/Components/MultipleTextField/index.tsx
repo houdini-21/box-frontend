@@ -1,13 +1,15 @@
+import { ChangeEventHandler } from "react";
 import classNames from "classnames";
 
 interface MultipleTextFieldItemProps {
   label: string;
   nameInput: string;
   placeholder: string;
-  onChange: (value: string) => void;
+  onChange: ChangeEventHandler<HTMLInputElement>;
   type: "text" | "number";
   measure: string;
   className?: string;
+  inputValue: string | number;
 }
 
 interface MultipleTextFieldProps {
@@ -34,8 +36,9 @@ const MultipleTextField = ({ items }: MultipleTextFieldProps) => {
               type={item.type}
               name={item.nameInput}
               placeholder={item.placeholder}
+              value={item.inputValue}
               className="py-3 px-2 outline-none text-gray-900 font-medium w-full"
-              onChange={(e) => item.onChange(e.target.value)}
+              onChange={item.onChange}
             />
             <span className="text-gray-500 font-bold">{item.measure}</span>
           </div>
