@@ -4,6 +4,7 @@ import TextField from "@/app/Components/TextField";
 import SelectField from "@/app/Components/SelectField";
 import DateField from "@/app/Components/DateField";
 import PhoneField from "@/app/Components/PhoneField";
+import MultipleTextField from "@/app/Components/MultipleTextField";
 
 export default function CreatePage() {
   return (
@@ -59,6 +60,37 @@ export default function CreatePage() {
         error={false}
         errorMessage="Debe ingresar un número de teléfono"
       />
+
+      <div className="w-3/12">
+        <MultipleTextField
+          items={[
+            {
+              label: "Name",
+              nameInput: "name",
+              placeholder: "Enter your name",
+              onChange: (value) => console.log(value),
+              type: "text",
+              measure: "cm",
+            },
+            {
+              label: "Name 2",
+              nameInput: "name",
+              placeholder: "Enter your name",
+              onChange: (value) => console.log(value),
+              type: "text",
+              measure: "cm",
+            },
+            {
+              label: "Name 3",
+              nameInput: "name",
+              placeholder: "Enter your name",
+              onChange: (value) => console.log(value),
+              type: "text",
+              measure: "cm",
+            },
+          ]}
+        />
+      </div>
     </div>
   );
 }
