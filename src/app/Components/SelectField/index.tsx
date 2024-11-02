@@ -26,15 +26,16 @@ export const SelectField = ({
 }: SelectFieldProps) => {
   return (
     <div className="flex flex-col gap-1 mt-2">
-      <label className="text-md text-gray-500 font-semibold">{label}</label>
+      <label className="text-md text-gray-500 font-medium">{label}</label>
       <Select
         id={nameInput}
         options={options}
         styles={{
           control: (provided: any, state: any) => ({
             ...provided,
-            padding: "0.44rem",
+            padding: "0.39rem",
             borderRadius: "0.375rem",
+            border: 0,
             borderWidth: "2px",
             borderColor: error
               ? "#ef4444"
@@ -43,10 +44,13 @@ export const SelectField = ({
               : "#d1d5db",
             boxShadow: state.isFocused
               ? error
-                ? "0 0 0 1px #ef4444"
-                : "0 0 0 1px #3b82f6"
-              : "none",
+                ? "0 0 0 2px #ef4444"
+                : "0 0 0 2px #3b82f6"
+              : "0 0 0 2px #d1d5db",
             transition: "border-color 0.2s, box-shadow 0.2s",
+            "&:hover": {
+              boxShadow: error ? "0 0 0 2px #ef4444" : "0 0 0 2px #9ca3af",
+            },
           }),
           placeholder: (provided: any) => ({
             ...provided,
@@ -76,7 +80,9 @@ export const SelectField = ({
         }}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onChange={onChange as any}
-        className={classNames("font-medium", { "react-select-error": error })}
+        className={classNames("font-medium border-none", {
+          "react-select-error": error,
+        })}
         placeholder="Seleccione una opción"
       />
       {error && (

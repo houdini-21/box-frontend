@@ -1,5 +1,5 @@
 "use client";
-import { SelectField, TextField } from "@/app/Components";
+import { DateField, SelectField, TextField } from "@/app/Components";
 
 export default function CreatePage() {
   return (
@@ -7,13 +7,16 @@ export default function CreatePage() {
       <h1>Create Page</h1>
       <TextField
         label="Name"
+        type="text"
         placeholder="Enter your name"
         onChange={(e) => console.log(e)}
         error={false}
         errorMessage="This is helper text"
+        nameInput="name"
       />
 
       <SelectField
+        nameInput="categoria"
         label="Categoría"
         options={[
           { value: "opcion1", label: "Opción 1" },
@@ -23,6 +26,14 @@ export default function CreatePage() {
         onChange={(e) => console.log(e)}
         error={false}
         errorMessage="Debe seleccionar una opción"
+      />
+
+      <DateField
+        label="Fecha de nacimiento"
+        selectedDate={new Date()}
+        onChange={(date) => console.log(date)}
+        error={false}
+        errorMessage="Debe seleccionar una fecha"
       />
     </div>
   );
