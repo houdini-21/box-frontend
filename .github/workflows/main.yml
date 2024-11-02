@@ -23,7 +23,7 @@ jobs:
           # Subir todo el repositorio al servidor
           scp -i private_key -o StrictHostKeyChecking=no -r ./* $SERVER:/var/www/html/boxfulFrontend/
           ssh -i private_key -o StrictHostKeyChecking=no $SERVER << 'EOF'
-            cd /var/www/html/boxfulFrontend/
+            cd /var/www/html/   /
             npm install
             npm run build
             pm2 restart boxfulFrontend || pm2 start npm --name "boxfulFrontend" -- run start
