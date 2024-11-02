@@ -1,5 +1,5 @@
 "use client";
-
+import { MdLocationOn } from "react-icons/md";
 import TextField from "@/app/Components/TextField";
 import SelectField from "@/app/Components/SelectField";
 import DateField from "@/app/Components/DateField";
@@ -17,6 +17,18 @@ export default function CreatePage() {
         error={false}
         errorMessage="This is helper text"
         nameInput="name"
+      />
+
+      <TextField
+        label="Name"
+        type="text"
+        placeholder="Enter your name"
+        onChange={(e) => console.log(e)}
+        error={false}
+        errorMessage="This is helper text"
+        nameInput="name"
+        icon={<MdLocationOn className="text-gray-500 text-3xl" />}
+        withIcon
       />
 
       <SelectField
