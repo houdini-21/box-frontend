@@ -16,7 +16,7 @@ interface SelectFieldProps {
   errorMessage: string;
 }
 
-export const SelectField = ({
+const SelectField = ({
   label,
   nameInput,
   options,
@@ -91,3 +91,5 @@ export const SelectField = ({
     </div>
   );
 };
+
+export default SelectField;

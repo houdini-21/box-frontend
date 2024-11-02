@@ -1,5 +1,9 @@
 "use client";
-import { DateField, SelectField, TextField } from "@/app/Components";
+
+import TextField from "@/app/Components/TextField";
+import SelectField from "@/app/Components/SelectField";
+import DateField from "@/app/Components/DateField";
+import PhoneField from "@/app/Components/PhoneField";
 
 export default function CreatePage() {
   return (
@@ -34,6 +38,14 @@ export default function CreatePage() {
         onChange={(date) => console.log(date)}
         error={false}
         errorMessage="Debe seleccionar una fecha"
+      />
+
+      <PhoneField
+        label="Teléfono"
+        value=""
+        onChange={(e) => console.log(e)}
+        error={false}
+        errorMessage="Debe ingresar un número de teléfono"
       />
     </div>
   );

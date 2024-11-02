@@ -13,7 +13,7 @@ interface DateFieldProps {
   errorMessage: string;
 }
 
-export const DateField: React.FC<DateFieldProps> = ({
+const DateField: React.FC<DateFieldProps> = ({
   label,
   selectedDate,
   onChange,
@@ -31,7 +31,7 @@ export const DateField: React.FC<DateFieldProps> = ({
           {
             "border-red-500 focus:ring-red-200": error,
             "border-blue-500 focus:ring-blue-200": !error && isFocused,
-            "border-gray-300 hover:border-gray-400 ": !isFocused && !error,
+            "border-gray-300 hover:border-gray-400": !isFocused && !error,
           }
         )}
       >
@@ -58,3 +58,5 @@ export const DateField: React.FC<DateFieldProps> = ({
     </div>
   );
 };
+
+export default DateField;

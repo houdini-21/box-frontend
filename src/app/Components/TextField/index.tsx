@@ -10,7 +10,7 @@ interface TextFieldProps {
   type: "text" | "password" | "email" | "number";
 }
 
-export const TextField = ({
+const TextField = ({
   label,
   type,
   nameInput,
@@ -40,3 +40,5 @@ export const TextField = ({
     </div>
   );
 };
+
+export default TextField;
