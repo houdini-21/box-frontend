@@ -17,8 +17,14 @@ export const useFormLogic = () => {
       email: form.email || "",
       phone: form.phone || "",
       recipientAddress: form.recipientAddress || "",
-      department: form.department || "",
-      municipality: form.municipality || "",
+      department: form.department || {
+        label: "",
+        value: "",
+      },
+      municipality: form.municipality || {
+        label: "",
+        value: "",
+      },
       zone: form.zone || "",
       instructions: form.instructions || "",
     },
