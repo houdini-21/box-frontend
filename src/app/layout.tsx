@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Albert_Sans } from "next/font/google";
 import "./globals.css";
+
+const albertSans = Albert_Sans({
+  display: "swap",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Boxful - Envíos en tiempo récord para empresas.",
@@ -14,11 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link
-        href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;700&display=swap"
-        rel="stylesheet"
-      />
-      <body className="antialiased">{children}</body>
+      <body className={`antialiased ${albertSans.className}`}>{children}</body>
     </html>
   );
 }
