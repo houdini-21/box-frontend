@@ -1,4 +1,3 @@
-"use client";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { MdCalendarMonth } from "react-icons/md";
@@ -28,7 +27,7 @@ const DateField: React.FC<DateFieldProps> = ({
     <div
       className={classNames("flex flex-col items-start w-full mt-2", className)}
     >
-      <label className="text-md text-gray-500 font-medium">{label}</label>
+      <label className="text-md text-gray-500 font-medium mb-1">{label}</label>
       <div
         className={classNames(
           "flex items-center border-2 rounded-md transition-all duration-200 w-full",
@@ -47,12 +46,15 @@ const DateField: React.FC<DateFieldProps> = ({
         </div>
         <DatePicker
           selected={selectedDate}
-          onChange={(date) => onChange(date)}
+          onChange={(date) => {
+            setIsFocused(false);
+            onChange(date);
+          }}
           placeholderText="dd / mm / yyyy"
           dateFormat="dd / MM / yyyy"
           className="outline-none w-full text-gray-900 font-medium p-3"
           open={isFocused}
-          onFocus={() => setIsFocused(!isFocused)}
+          onFocus={() => setIsFocused(true)}
           onClickOutside={() => setIsFocused(false)}
         />
       </div>

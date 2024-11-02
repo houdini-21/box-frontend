@@ -9,6 +9,7 @@ interface SelectComponentItem {
 
 interface SelectFieldProps {
   label: string;
+  value: string;
   nameInput: string;
   options: SelectComponentItem[];
   onChange: (value: SelectComponentItem) => void;
@@ -28,10 +29,11 @@ const SelectField = ({
 }: SelectFieldProps) => {
   return (
     <div className={classNames("flex flex-col gap-1 w-full mt-2", className)}>
-      <label className="text-md text-gray-500 font-medium">{label}</label>
+      <label className="text-md text-gray-500 font-medium mb-1">{label}</label>
       <Select
         id={nameInput}
         options={options}
+        value={options.find((option) => option.value === nameInput)}
         styles={{
           control: (provided, state) => ({
             ...provided,

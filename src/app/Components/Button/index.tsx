@@ -10,6 +10,7 @@ interface ButtonProps {
   disabled?: boolean;
   loading?: boolean;
   className?: string;
+  type?: "button" | "submit";
 }
 
 const Button = ({
@@ -21,9 +22,11 @@ const Button = ({
   loading = false,
   iconDirection = "left",
   className,
+  type = "button",
 }: ButtonProps) => {
   return (
     <button
+      type={type}
       onClick={onClick}
       disabled={disabled || loading}
       className={classNames(

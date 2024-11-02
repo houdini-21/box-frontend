@@ -25,7 +25,7 @@ const PhoneField: React.FC<PhoneFieldProps> = ({
 
   return (
     <div className={classNames("flex flex-col gap-1 mt-2", className)}>
-      <label className="text-md text-gray-500 font-medium">{label}</label>
+      <label className="text-md text-gray-500 font-medium mb-1">{label}</label>
       <div
         className={classNames(
           "flex items-center border-2 rounded-md transition-all duration-200",
@@ -41,7 +41,7 @@ const PhoneField: React.FC<PhoneFieldProps> = ({
           value={value}
           onChange={onChange}
           placeholder="+503 6962 8383"
-          inputClass="w-full outline-none text-gray-900 font-medium py-3 !pl-[68px] !h-auto !border-none"
+          inputClass="!w-full outline-none text-gray-900 font-medium py-3 !pl-[68px] !h-auto !border-none"
           buttonClass="!bg-gray-100 !border-none !rounded-l-md"
           dropdownClass="text-gray-900"
           containerClass="w-full"

@@ -1,22 +1,42 @@
 "use client";
+import { useFormik } from "formik";
 import { MdLocationOn } from "react-icons/md";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import TextField from "@/app/Components/TextField";
 import SelectField from "@/app/Components/SelectField";
 import DateField from "@/app/Components/DateField";
 import PhoneField from "@/app/Components/PhoneField";
-import MultipleTextField from "@/app/Components/MultipleTextField";
 import Button from "@/app/Components/Button";
 
 export default function CreatePage() {
+  const formik = useFormik({
+    initialValues: {
+      date: new Date(),
+      address: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      recipientAddress: "",
+      department: "",
+      municipality: "",
+      zone: "",
+      instructions: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
-    <div className="w-full flex flex-col p-4">
-      <div className="w-full flex flex-row gap-x-6 mt-4">
+    <div className="w-full flex flex-col lg:p-4 p-0">
+      <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
         <TextField
           label="📍 Dirección de recolección"
           type="text"
           placeholder="Ingrese la dirección de recolección"
-          onChange={(e) => console.log(e)}
+          value={formik.values.address}
+          onChange={formik.handleChange}
           error={false}
           errorMessage="This is helper text"
           nameInput="address"
@@ -25,20 +45,21 @@ export default function CreatePage() {
 
         <DateField
           label="📅 Fecha Programada"
-          selectedDate={new Date()}
-          onChange={(date) => console.log(date)}
+          selectedDate={formik.values.date}
+          onChange={(date) => formik.setFieldValue("date", date)}
           error={false}
           errorMessage="Debe seleccionar una fecha"
           className="lg:w-3/12 w-full"
         />
       </div>
 
-      <div className="w-full flex flex-row gap-x-6 mt-4">
+      <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
         <TextField
           label="Nombres"
           type="text"
           placeholder="Ingrese los nombres"
-          onChange={(e) => console.log(e)}
+          value={formik.values.firstName}
+          onChange={formik.handleChange}
           error={false}
           errorMessage="This is helper text"
           nameInput="firstName"
@@ -49,7 +70,8 @@ export default function CreatePage() {
           label="Apellidos"
           type="text"
           placeholder="Ingrese los apellidos"
-          onChange={(e) => console.log(e)}
+          value={formik.values.lastName}
+          onChange={formik.handleChange}
           error={false}
           errorMessage="This is helper text"
           nameInput="lastName"
@@ -60,18 +82,19 @@ export default function CreatePage() {
           label="Correo Electrónico"
           type="email"
           placeholder="Ingrese el correo electrónico"
-          onChange={(e) => console.log(e)}
+          value={formik.values.email}
+          onChange={formik.handleChange}
           error={false}
           errorMessage="This is helper text"
           nameInput="email"
           className="lg:w-4/12 w-full"
         />
       </div>
-      <div className="w-full flex flex-row gap-x-6 mt-4">
+      <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
         <PhoneField
           label="Teléfono"
-          value=""
-          onChange={(e) => console.log(e)}
+          value={formik.values.phone}
+          onChange={(e) => formik.setFieldValue("phone", e)}
           error={false}
           errorMessage="Debe ingresar un número de teléfono"
           className="lg:w-4/12 w-full"
@@ -81,16 +104,17 @@ export default function CreatePage() {
           label="Dirección del destinatario"
           type="text"
           placeholder="Ingrese la dirección del destinatario"
-          onChange={(e) => console.log(e)}
+          value={formik.values.recipientAddress}
+          onChange={formik.handleChange}
           error={false}
           errorMessage="This is helper text"
-          nameInput="name"
+          nameInput="recipientAddress"
           icon={<MdLocationOn className="text-gray-500 text-3xl" />}
           withIcon
           className="lg:w-8/12 w-full"
         />
       </div>
-      <div className="w-full flex flex-row gap-x-6 mt-4">
+      <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
         <SelectField
           nameInput="departamento"
           label="Departamento"
@@ -99,7 +123,8 @@ export default function CreatePage() {
             { value: "opcion2", label: "Opción 2" },
             { value: "opcion3", label: "Opción 3" },
           ]}
-          onChange={(e) => console.log(e)}
+          value={formik.values.department}
+          onChange={(e) => formik.setFieldValue("department", e)}
           error={false}
           errorMessage="Debe seleccionar una opción"
           className="lg:w-4/12 w-full"
@@ -112,7 +137,8 @@ export default function CreatePage() {
             { value: "opcion2", label: "Opción 2" },
             { value: "opcion3", label: "Opción 3" },
           ]}
-          onChange={(e) => console.log(e)}
+          value={formik.values.municipality}
+          onChange={(e) => formik.setFieldValue("municipality", e)}
           error={false}
           errorMessage="Debe seleccionar una opción"
           className="lg:w-4/12 w-full"
@@ -121,7 +147,8 @@ export default function CreatePage() {
           label="Punto de Referencia"
           type="text"
           placeholder="Ingrese un punto de referencia"
-          onChange={(e) => console.log(e)}
+          value={formik.values.zone}
+          onChange={formik.handleChange}
           error={false}
           errorMessage="This is helper text"
           nameInput="zone"
@@ -133,10 +160,11 @@ export default function CreatePage() {
           label="Indicaciones"
           type="text"
           placeholder="Ingrese las indicaciones"
-          onChange={(e) => console.log(e)}
+          value={formik.values.instructions}
+          onChange={formik.handleChange}
           error={false}
           errorMessage="This is helper text"
-          nameInput="zone"
+          nameInput="instructions"
           className="w-full"
         />
       </div>
@@ -145,9 +173,10 @@ export default function CreatePage() {
         text="Siguiente"
         color="bg-blue-500"
         icon={<FaArrowRight className="w-5 h-5" />}
-        onClick={() => console.log("Botón Enviar presionado")}
+        iconDirection="right"
+        onClick={() => formik.handleSubmit()}
         loading={false}
-        className="w-1/12 mt-12 self-end"
+        className="lg:w-1/12 w-full mt-12 lg:self-end"
       />
     </div>
   );

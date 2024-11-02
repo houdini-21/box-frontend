@@ -18,7 +18,7 @@ const MultipleTextField = ({ items }: MultipleTextFieldProps) => {
     <div className="flex items-center w-full mt-2">
       {items.map((item, index) => (
         <div key={index} className="flex flex-col items-start w-full">
-          <label className="text-gray-500 font-medium">{item.label}</label>
+          <label className="text-gray-500 font-medium mb-1">{item.label}</label>
           <div
             className={classNames(
               "flex flex-row items-center border-y-2 border-gray-300 px-2 w-full  focus-within:border-blue-500 focus-within:ring-blue-200 transition-all duration-200",

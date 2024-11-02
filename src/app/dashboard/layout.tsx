@@ -8,7 +8,7 @@ export default function DashboardLayout({
   return (
     <div className="overflow-y-scroll w-screen h-screen antialiased text-white">
       <TopBar />
-      <div className="flex flex-col justify-center items-center px-12 pt-16">
+      <div className="flex flex-col justify-center items-center lg:px-12 pt-16">
         <div className="w-3/4">
           <div className="w-full mb-8">
             <h1 className="text-2xl font-bold text-gray-600">Crea una orden</h1>
@@ -21,7 +21,7 @@ export default function DashboardLayout({
             </p>
           </div>
 
-          <div className="w-full bg-white rounded-lg shadow-sm px-10 py-4">
+          <div className="w-full bg-white rounded-lg shadow-sm lg:px-10 px-6 py-4">
             {children}
           </div>
         </div>
