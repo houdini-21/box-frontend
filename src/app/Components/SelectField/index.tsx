@@ -31,7 +31,7 @@ const SelectField = ({
         id={nameInput}
         options={options}
         styles={{
-          control: (provided: any, state: any) => ({
+          control: (provided, state) => ({
             ...provided,
             padding: "0.39rem",
             borderRadius: "0.375rem",
@@ -52,18 +52,18 @@ const SelectField = ({
               boxShadow: error ? "0 0 0 2px #ef4444" : "0 0 0 2px #9ca3af",
             },
           }),
-          placeholder: (provided: any) => ({
+          placeholder: (provided) => ({
             ...provided,
             color: "#9CA3AF",
             fontWeight: "500",
           }),
-          menu: (provided: any) => ({
+          menu: (provided) => ({
             ...provided,
             marginTop: 0,
             borderRadius: "0.375rem",
             overflow: "hidden",
           }),
-          option: (provided: any, state: any) => ({
+          option: (provided, state) => ({
             ...provided,
             backgroundColor: state.isSelected
               ? "#3b82f6"
