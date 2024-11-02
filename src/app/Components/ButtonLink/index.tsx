@@ -1,36 +1,33 @@
-import { CgSpinner } from "react-icons/cg";
+import Link from "next/link";
 import classNames from "classnames";
+import { CgSpinner } from "react-icons/cg";
 
 interface ButtonProps {
   text?: string;
   color?: string;
   icon?: React.ReactNode;
   iconDirection?: "left" | "right";
-  onClick?: () => void;
   disabled?: boolean;
   loading?: boolean;
   className?: string;
-  type?: "button" | "submit";
   justIcon?: boolean;
+  href: string;
 }
 
-const Button = ({
+const ButtonLink = ({
   text = "Enviar",
   color = "bg-blue-500 text-white",
   icon,
-  onClick,
   disabled = false,
   loading = false,
   iconDirection = "left",
   className,
-  type = "button",
   justIcon = false,
+  href,
 }: ButtonProps) => {
   return justIcon ? (
-    <button
-      type={type}
-      onClick={onClick}
-      disabled={disabled}
+    <Link
+      href={href}
       className={classNames(
         "flex items-center justify-center p-3 rounded-md  font-medium transition-colors duration-300",
         color,
@@ -42,12 +39,10 @@ const Button = ({
       )}
     >
       {icon}
-    </button>
+    </Link>
   ) : (
-    <button
-      type={type}
-      onClick={onClick}
-      disabled={disabled || loading}
+    <Link
+      href={href}
       className={classNames(
         "flex items-center justify-center p-4 rounded-md  font-medium transition-colors duration-300",
         color,
@@ -73,8 +68,8 @@ const Button = ({
           )}
         </>
       )}
-    </button>
+    </Link>
   );
 };
 
-export default Button;
+export default ButtonLink;

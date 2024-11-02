@@ -1,8 +1,4 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useFormik } from "formik";
-import { useAppDispatch, useAppSelector } from "@/Store";
-import { updateForm } from "@/Store/Form/formSlice";
 import { MdLocationOn } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa";
 import TextField from "@/app/Components/TextField";
@@ -10,37 +6,10 @@ import SelectField from "@/app/Components/SelectField";
 import DateField from "@/app/Components/DateField";
 import PhoneField from "@/app/Components/PhoneField";
 import Button from "@/app/Components/Button";
+import { useFormLogic } from "./useFormLogic";
 
 export default function Step1Page() {
-  const router = useRouter();
-  const dispatch = useAppDispatch();
-  const form = useAppSelector((state) => state.form.form);
-
-  const formik = useFormik({
-    initialValues: {
-      date: form.date ? new Date(form.date) : new Date(),
-      address: form.address || "",
-      firstName: form.firstName || "",
-      lastName: form.lastName || "",
-      email: form.email || "",
-      phone: form.phone || "",
-      recipientAddress: form.recipientAddress || "",
-      department: form.department || "",
-      municipality: form.municipality || "",
-      zone: form.zone || "",
-      instructions: form.instructions || "",
-    },
-    onSubmit: (values) => {
-      dispatch(
-        updateForm({
-          ...values,
-          date: values.date.toISOString(),
-        })
-      );
-
-      router.push("/dashboard/step2");
-    },
-  });
+  const { formik } = useFormLogic();
 
   return (
     <div className="w-full flex flex-col lg:p-4 p-0">
@@ -104,6 +73,7 @@ export default function Step1Page() {
           className="lg:w-4/12 w-full"
         />
       </div>
+
       <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
         <PhoneField
           label="Teléfono"
@@ -128,6 +98,7 @@ export default function Step1Page() {
           className="lg:w-8/12 w-full"
         />
       </div>
+
       <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
         <SelectField
           nameInput="departamento"
@@ -169,6 +140,7 @@ export default function Step1Page() {
           className="lg:w-4/12 w-full"
         />
       </div>
+
       <div className="w-full flex flex-row gap-x-6 mt-4">
         <TextField
           label="Indicaciones"
@@ -185,8 +157,8 @@ export default function Step1Page() {
 
       <Button
         text="Siguiente"
-        color="bg-blue-500"
-        icon={<FaArrowRight className="w-5 h-5" />}
+        color="bg-blue-600"
+        icon={<FaArrowRight className="text-xl" />}
         iconDirection="right"
         onClick={() => formik.handleSubmit()}
         loading={false}

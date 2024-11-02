@@ -7,6 +7,7 @@ interface MultipleTextFieldItemProps {
   onChange: (value: string) => void;
   type: "text" | "number";
   measure: string;
+  className?: string;
 }
 
 interface MultipleTextFieldProps {
@@ -21,7 +22,7 @@ const MultipleTextField = ({ items }: MultipleTextFieldProps) => {
           <label className="text-gray-500 font-medium mb-1">{item.label}</label>
           <div
             className={classNames(
-              "flex flex-row items-center border-y-2 border-gray-300 px-2 w-full  focus-within:border-blue-500 focus-within:ring-blue-200 transition-all duration-200",
+              "flex flex-row items-center bg-white border-y-2 border-gray-300 px-2 w-full  focus-within:border-blue-500 focus-within:ring-blue-200 transition-all duration-200",
               {
                 "border-2": index !== 0 && index !== items.length - 1,
                 "rounded-l-md border-l-2": index === 0,
