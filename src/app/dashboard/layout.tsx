@@ -27,8 +27,6 @@ export default function DashboardLayout({
             {children}
           </div>
         </div>
-
-        {/* <div className="p-2 w-full text-gray-800">{children}</div> */}
       </div>
 
       <ToastContainer />

@@ -12,7 +12,7 @@ const Step1 = () => {
   const { formik } = useStep1Logic();
 
   return (
-    <>
+    <div className="w-full flex flex-col">
       <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
         <TextField
           label="📍 Dirección de recolección"
@@ -163,7 +163,7 @@ const Step1 = () => {
         loading={false}
         className="lg:w-1/12 w-full mt-12 lg:self-end"
       />
-    </>
+    </div>
   );
 };
 
