@@ -10,6 +10,8 @@ interface MultipleTextFieldItemProps {
   measure: string;
   className?: string;
   inputValue: string | number;
+  error?: boolean;
+  errorMessage?: string;
 }
 
 interface MultipleTextFieldProps {

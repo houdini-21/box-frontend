@@ -1,4 +1,6 @@
+import { ToastContainer } from "react-toastify";
 import TopBar from "@/app/Components/TopBar";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function DashboardLayout({
   children,
@@ -28,6 +30,8 @@ export default function DashboardLayout({
 
         {/* <div className="p-2 w-full text-gray-800">{children}</div> */}
       </div>
+
+      <ToastContainer />
     </div>
   );
 }
