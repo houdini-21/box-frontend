@@ -27,6 +27,7 @@ const ButtonLink = ({
 }: ButtonProps) => {
   return justIcon ? (
     <Link
+      prefetch
       href={href}
       className={classNames(
         "flex items-center justify-center p-3 rounded-md  font-medium transition-colors duration-300",
@@ -43,6 +44,7 @@ const ButtonLink = ({
   ) : (
     <Link
       href={href}
+      prefetch
       className={classNames(
         "flex items-center justify-center p-4 rounded-md  font-medium transition-colors duration-300",
         color,

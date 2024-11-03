@@ -17,7 +17,6 @@ const ListBoxItem = ({
   updateListBox,
   handleRemoveListBox,
 }: ListBoxItemProps) => {
-  console.log("listboxitem");
   return (
     <div
       className="flex flex-col w-full bg-white p-4 rounded border border-emerald-500 my-2"

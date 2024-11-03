@@ -7,14 +7,10 @@ import DateField from "@/app/Components/DateField";
 import PhoneField from "@/app/Components/PhoneField";
 import Button from "@/app/Components/Button";
 import { useFormLogic } from "./useFormLogic";
-import { useEffect } from "react";
 
 export default function Step1Page() {
-  const { formik } = useFormLogic();
+  const { formik, loading } = useFormLogic();
 
-  useEffect(() => {
-    console.log(formik.errors);
-  }, [formik.errors]);
   return (
     <div className="w-full flex flex-col lg:p-4 p-0">
       <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
@@ -164,7 +160,7 @@ export default function Step1Page() {
         icon={<FaArrowRight className="text-xl" />}
         iconDirection="right"
         onClick={() => formik.handleSubmit()}
-        loading={false}
+        loading={loading}
         className="lg:w-1/12 w-full mt-12 lg:self-end"
       />
     </div>
