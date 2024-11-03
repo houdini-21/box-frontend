@@ -1,13 +1,10 @@
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import { useAppDispatch, useAppSelector } from "@/Store";
 import { updateForm } from "@/Store/Form/formSlice";
+import { nxtStep } from "@/Store/Step/stepSlice";
 import validationSchema from "./validation";
 
-export const useFormLogic = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter();
+export const useStep1Logic = () => {
   const dispatch = useAppDispatch();
   const form = useAppSelector((state) => state.form.form);
 
@@ -33,7 +30,7 @@ export const useFormLogic = () => {
     },
     validationSchema,
     onSubmit: (values) => {
-      setLoading(true);
+      console.log(values);
       dispatch(
         updateForm({
           ...values,
@@ -41,10 +38,9 @@ export const useFormLogic = () => {
         })
       );
 
-      router.push("/dashboard/step2");
-      setLoading(false);
+      dispatch(nxtStep());
     },
   });
 
-  return { formik, loading };
+  return { formik };
 };

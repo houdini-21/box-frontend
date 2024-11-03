@@ -6,13 +6,13 @@ import SelectField from "@/app/Components/SelectField";
 import DateField from "@/app/Components/DateField";
 import PhoneField from "@/app/Components/PhoneField";
 import Button from "@/app/Components/Button";
-import { useFormLogic } from "./useFormLogic";
+import { useStep1Logic } from "./useFormLogic";
 
-export default function Step1Page() {
-  const { formik, loading } = useFormLogic();
+const Step1 = () => {
+  const { formik } = useStep1Logic();
 
   return (
-    <div className="w-full flex flex-col lg:p-4 p-0">
+    <>
       <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
         <TextField
           label="📍 Dirección de recolección"
@@ -160,9 +160,11 @@ export default function Step1Page() {
         icon={<FaArrowRight className="text-xl" />}
         iconDirection="right"
         onClick={() => formik.handleSubmit()}
-        loading={loading}
+        loading={false}
         className="lg:w-1/12 w-full mt-12 lg:self-end"
       />
-    </div>
+    </>
   );
-}
+};
+
+export default Step1;

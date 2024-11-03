@@ -2,14 +2,17 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { RiBox3Fill } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa6";
+import { useAppDispatch } from "@/Store";
+import { prvStep } from "@/Store/Step/stepSlice";
 import { useStep2Logic } from "./useFormLogic";
+import ListBoxItem from "./ListBoxItem";
 import MultipleTextField from "@/app/Components/MultipleTextField";
 import TextField from "@/app/Components/TextField";
 import Button from "@/app/Components/Button";
-import ButtonLink from "@/app/Components/ButtonLink";
-import ListBoxItem from "./ListBoxItem";
 
 export default function Step2Page() {
+  const dispatch = useAppDispatch();
+
   const { productsList, formik, updateListBox, handleRemoveListBox } =
     useStep2Logic();
 
@@ -117,12 +120,12 @@ export default function Step2Page() {
       </div>
 
       <div className="w-full flex flex-row justify-between mt-10">
-        <ButtonLink
+        <Button
           text="Regresar"
           color="bg-gray-200 text-zinc-500"
           icon={<FaArrowLeft className="text-xl" />}
           iconDirection="left"
-          href="/dashboard/step1"
+          onClick={() => dispatch(prvStep())}
           className="lg:w-1/12 w-full"
         />
         <Button

@@ -1,9 +1,9 @@
+import { useState, useCallback } from "react";
+import { debounce } from "lodash";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "@/Store";
 import { addListBox, editListBox, removeListBox } from "@/Store/Form/formSlice";
-import { useState, useCallback } from "react";
-import { debounce } from "lodash";
 
 interface ListBoxItemProps {
   weight: number;
@@ -14,9 +14,12 @@ interface ListBoxItemProps {
 }
 
 export function useStep2Logic() {
-  const [productsList, setProductsList] = useState<ListBoxItemProps[]>([]);
   const dispatch = useAppDispatch();
   const listBox = useAppSelector((state) => state.form.form.listBox);
+
+  const [productsList, setProductsList] = useState<ListBoxItemProps[]>(
+    listBox || []
+  );
 
   const debouncedUpdate = useCallback(
     debounce((index: number, data: any) => {
