@@ -11,7 +11,7 @@ interface SelectFieldProps {
   label: string;
   value: SelectComponentItem;
   nameInput: string;
-  options: SelectComponentItem[];
+  options: SelectComponentItem[] | undefined;
   onChange: (value: SelectComponentItem) => void;
   error: boolean | undefined;
   errorMessage: string | undefined;

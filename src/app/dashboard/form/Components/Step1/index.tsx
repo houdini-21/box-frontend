@@ -9,8 +9,9 @@ import Button from "@/app/Components/Button";
 import { useStep1Logic } from "./useFormLogic";
 
 const Step1 = () => {
-  const { formik } = useStep1Logic();
+  const { formik, departments, getMunicipality } = useStep1Logic();
 
+  const optionsMunicipality = getMunicipality(formik.values.department.value);
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
@@ -102,13 +103,18 @@ const Step1 = () => {
         <SelectField
           nameInput="departamento"
           label="Departamento"
-          options={[
-            { value: "opcion1", label: "Opción 1" },
-            { value: "opcion2", label: "Opción 2" },
-            { value: "opcion3", label: "Opción 3" },
-          ]}
+          options={departments.map((department) => ({
+            value: department.id,
+            label: department.nombre,
+          }))}
           value={formik.values.department}
-          onChange={(e) => formik.setFieldValue("department", e)}
+          onChange={(e) => {
+            formik.setFieldValue("department", e);
+            formik.setFieldValue("municipality", {
+              label: "",
+              value: "",
+            });
+          }}
           error={formik.errors.department !== undefined}
           errorMessage={formik.errors.department?.label}
           className="lg:w-4/12 w-full"
@@ -116,11 +122,7 @@ const Step1 = () => {
         <SelectField
           nameInput="municipio"
           label="Municipio"
-          options={[
-            { value: "opcion1", label: "Opción 1" },
-            { value: "opcion2", label: "Opción 2" },
-            { value: "opcion3", label: "Opción 3" },
-          ]}
+          options={optionsMunicipality}
           value={formik.values.municipality}
           onChange={(e) => formik.setFieldValue("municipality", e)}
           error={formik.errors.municipality !== undefined}
