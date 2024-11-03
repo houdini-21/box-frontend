@@ -7,7 +7,7 @@ interface SelectOption {
 
 interface FormListBox {
   weight: number;
-  length: number;
+  lengthValue: number;
   height: number;
   width: number;
   content: string;

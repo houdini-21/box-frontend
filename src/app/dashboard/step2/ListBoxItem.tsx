@@ -69,11 +69,11 @@ const ListBoxItem = ({
                 onChange: (value) =>
                   updateListBox(index, {
                     ...item,
-                    length: value.target.value,
+                    lengthValue: value.target.value,
                   }),
                 type: "text",
                 measure: "cm",
-                inputValue: item.length,
+                inputValue: item.lengthValue,
               },
               {
                 label: "Alto",

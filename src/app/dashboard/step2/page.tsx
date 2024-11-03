@@ -10,7 +10,7 @@ import ButtonLink from "@/app/Components/ButtonLink";
 import ListBoxItem from "./ListBoxItem";
 
 export default function Step2Page() {
-  const { listBox, formik, updateListBox, handleRemoveListBox } =
+  const { productsList, formik, updateListBox, handleRemoveListBox } =
     useStep2Logic();
 
   return (
@@ -99,8 +99,8 @@ export default function Step2Page() {
           Lista de bultos
         </label>
 
-        {listBox && listBox.length > 0 ? (
-          listBox.map((item, index) => (
+        {productsList && productsList.length > 0 ? (
+          productsList.map((item, index) => (
             <ListBoxItem
               key={index}
               item={item}

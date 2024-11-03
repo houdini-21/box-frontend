@@ -2,13 +2,61 @@ import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "@/Store";
 import { addListBox, editListBox, removeListBox } from "@/Store/Form/formSlice";
+import { useState, useCallback } from "react";
+import { debounce } from "lodash";
+
+interface ListBoxItemProps {
+  weight: number;
+  content: string;
+  lengthValue: number;
+  height: number;
+  width: number;
+}
 
 export function useStep2Logic() {
+  const [productsList, setProductsList] = useState<ListBoxItemProps[]>([]);
   const dispatch = useAppDispatch();
   const listBox = useAppSelector((state) => state.form.form.listBox);
 
-  const updateListBox = (index: number, data: any) => {
-    dispatch(editListBox({ index, data }));
+  const debouncedUpdate = useCallback(
+    debounce((index: number, data: any) => {
+      dispatch(editListBox({ index, data }));
+    }, 5000),
+    []
+  );
+
+  const updateListBox = (index: number, data: ListBoxItemProps) => {
+    if (data.lengthValue <= 0) {
+      toast.error("El largo debe ser mayor a 0");
+      return;
+    }
+
+    if (data.height <= 0) {
+      toast.error("El alto debe ser mayor a 0");
+      return;
+    }
+
+    if (data.width <= 0) {
+      toast.error("El ancho debe ser mayor a 0");
+      return;
+    }
+
+    if (data.weight <= 0) {
+      toast.error("El peso debe ser mayor a 0");
+      return;
+    }
+
+    if (data.content === "") {
+      toast.error("El contenido no puede estar vacío");
+      return;
+    }
+
+    debouncedUpdate(index, data);
+    setProductsList((prev) => {
+      const newList = [...prev];
+      newList[index] = data;
+      return newList;
+    });
   };
 
   const formik = useFormik({
@@ -44,17 +92,22 @@ export function useStep2Logic() {
         toast.error("El contenido no puede estar vacío");
         return;
       }
-      dispatch(
-        addListBox({
-          ...values,
-          length: values.lengthValue,
-        })
-      );
+
+      setProductsList([...productsList, values]);
+
+      dispatch(addListBox(values));
+
       formik.resetForm();
     },
   });
 
   const handleRemoveListBox = (index: number) => {
+    setProductsList((prev) => {
+      const newList = [...prev];
+      newList.splice(index, 1);
+      return newList;
+    });
+
     dispatch(removeListBox(index));
   };
 
@@ -63,5 +116,6 @@ export function useStep2Logic() {
     formik,
     updateListBox,
     handleRemoveListBox,
+    productsList,
   };
 }
