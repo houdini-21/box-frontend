@@ -62,7 +62,7 @@ export function useStep2Logic() {
     });
   };
 
-  const formik = useFormik({
+  const formikStep2 = useFormik({
     initialValues: {
       weight: 0,
       content: "",
@@ -100,7 +100,7 @@ export function useStep2Logic() {
 
       dispatch(addListBox(values));
 
-      formik.resetForm();
+      formikStep2.resetForm();
     },
   });
 
@@ -116,7 +116,7 @@ export function useStep2Logic() {
 
   return {
     listBox,
-    formik,
+    formikStep2,
     updateListBox,
     handleRemoveListBox,
     productsList,

@@ -2,20 +2,27 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { RiBox3Fill } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa6";
-import { useAppDispatch } from "@/Store";
 import { prvStep } from "@/Store/Step/stepSlice";
-import { useStep2Logic } from "./useFormLogic";
 import ListBoxItem from "./ListBoxItem";
 import MultipleTextField from "@/app/Components/MultipleTextField";
 import TextField from "@/app/Components/TextField";
 import Button from "@/app/Components/Button";
 
-export default function Step2Page() {
-  const dispatch = useAppDispatch();
+interface Step2Props {
+  formik: any;
+  productsList: any;
+  updateListBox: any;
+  handleRemoveListBox: any;
+  dispatch: (arg0: any) => void;
+}
 
-  const { productsList, formik, updateListBox, handleRemoveListBox } =
-    useStep2Logic();
-
+export default function Step2Page({
+  formik,
+  productsList,
+  updateListBox,
+  handleRemoveListBox,
+  dispatch,
+}: Step2Props) {
   return (
     <div className="w-full flex flex-col lg:p-4 p-0">
       <div className="flex flex-col lg:items-start items-center lg:mb-4 mb-2">
@@ -103,7 +110,7 @@ export default function Step2Page() {
         </label>
 
         {productsList && productsList.length > 0 ? (
-          productsList.map((item, index) => (
+          productsList.map((item: any, index: number) => (
             <ListBoxItem
               key={index}
               item={item}

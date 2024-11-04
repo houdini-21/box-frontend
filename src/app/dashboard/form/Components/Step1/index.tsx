@@ -6,12 +6,19 @@ import SelectField from "@/app/Components/SelectField";
 import DateField from "@/app/Components/DateField";
 import PhoneField from "@/app/Components/PhoneField";
 import Button from "@/app/Components/Button";
-import { useStep1Logic } from "./useFormLogic";
 
-const Step1 = () => {
-  const { formik, departments, getMunicipality } = useStep1Logic();
+interface optionsProps {
+  id: string;
+  nombre: string;
+}
 
-  const optionsMunicipality = getMunicipality(formik.values.department.value);
+interface Step1Props {
+  formik: any;
+  departments: any;
+  optionsMunicipality: any;
+}
+
+const Step1 = ({ formik, departments, optionsMunicipality }: Step1Props) => {
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-row lg:flex-nowrap flex-wrap gap-x-6 mt-4">
@@ -103,7 +110,7 @@ const Step1 = () => {
         <SelectField
           nameInput="departamento"
           label="Departamento"
-          options={departments.map((department) => ({
+          options={departments.map((department: optionsProps) => ({
             value: department.id,
             label: department.nombre,
           }))}

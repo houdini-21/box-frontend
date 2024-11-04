@@ -21,7 +21,7 @@ export const useStep1Logic = () => {
   const dispatch = useAppDispatch();
   const form = useAppSelector((state) => state.form.form);
 
-  const formik = useFormik({
+  const formikStep1 = useFormik({
     initialValues: {
       date: form.date ? new Date(form.date) : new Date(),
       address: form.address || "",
@@ -83,5 +83,5 @@ export const useStep1Logic = () => {
     getDepartment();
   }, []);
 
-  return { formik, departments, getMunicipality };
+  return { formikStep1, departments, getMunicipality };
 };
