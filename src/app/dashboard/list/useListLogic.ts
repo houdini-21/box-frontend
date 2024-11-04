@@ -1,3 +1,5 @@
+import { ItemList } from "./interfaces";
+
 const getItems = async () => {
   const response = await fetch(
     "https://boxfulbackend.houdini-21.me/form-state-item"
