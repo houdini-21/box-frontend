@@ -1,33 +1,28 @@
-"use client";
 import { FaPlus } from "react-icons/fa6";
+import { ItemList } from "./interfaces";
 import Table from "@/app/Components/Table";
 import ButtonLink from "@/app/Components/ButtonLink";
 import Title from "../form/Components/Title";
 
-const tableItems = [
-  {
-    id: 1,
-    nombreCliente: "Juan Perez",
-    direccion: "Calle 123",
-    correoElectronico: "juanperez@gmail.com",
-    telefono: "123456789",
-    cantidadBultos: 5,
-  },
-  {
-    id: 2,
-    nombreCliente: "Pedro Perez",
-    direccion: "Calle 456",
-    correoElectronico: "pedroperez@gmail.com",
-    telefono: "987654321",
-    cantidadBultos: 10,
-  },
-];
+const getItems = async () => {
+  const response = await fetch(
+    "https://boxfulbackend.houdini-21.me/form-state-item"
+  ).then((res) => res.json());
 
-const deleteItem = (id: number) => {
-  console.log("Item deleted", id);
+  const items = response.map((item: ItemList) => ({
+    id: item.id,
+    nombreCliente: `${item.firstName} ${item.lastName}`,
+    direccion: item.address,
+    correoElectronico: item.email,
+    telefono: item.phone,
+    cantidadBultos: item.listBox.length,
+  }));
+
+  return items;
 };
 
-export default function ListPage() {
+export default async function ListPage() {
+  const tableItems = await getItems();
   return (
     <div className="w-full flex flex-col items-center justify-center lg:p-4 p-0">
       <div className="w-3/4">
@@ -53,7 +48,7 @@ export default function ListPage() {
               icon={<FaPlus className="text-white" />}
             />
           </div>
-          <Table tableItems={tableItems} deleteItem={deleteItem} />
+          <Table tableItems={tableItems} />
         </div>
       </div>
     </div>

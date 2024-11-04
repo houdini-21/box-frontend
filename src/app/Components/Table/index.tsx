@@ -11,10 +11,10 @@ interface TableProps {
 
 interface TablePropsList {
   tableItems: TableProps[];
-  deleteItem: (id: number) => void;
+  // deleteItem: (id: number) => void;
 }
 
-const Table = ({ tableItems, deleteItem }: TablePropsList) => {
+const Table = ({ tableItems }: TablePropsList) => {
   return (
     <div className="overflow-x-auto">
       <table className="border-collapse table-auto w-full mt-4">
@@ -76,7 +76,7 @@ const Table = ({ tableItems, deleteItem }: TablePropsList) => {
                 <button
                   type="button"
                   className="text-red-500 hover:text-red-600 text-xl"
-                  onClick={() => deleteItem(item.id)}
+                  // onClick={() => deleteItem(item.id)}
                 >
                   <FaRegTrashAlt />
                 </button>
