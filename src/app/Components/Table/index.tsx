@@ -1,18 +1,5 @@
-import { FaRegTrashAlt } from "react-icons/fa";
-
-interface TableProps {
-  id: number;
-  nombreCliente: string;
-  direccion: string;
-  correoElectronico: string;
-  telefono: string;
-  cantidadBultos: number;
-}
-
-interface TablePropsList {
-  tableItems: TableProps[];
-  // deleteItem: (id: number) => void;
-}
+import ButtonDelete from "./buttonDelete";
+import { TableProps, TablePropsList } from "./interfaces";
 
 const Table = ({ tableItems }: TablePropsList) => {
   return (
@@ -73,13 +60,7 @@ const Table = ({ tableItems }: TablePropsList) => {
 
               <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static before:content-[attr(data-label)] before:text-gray-500 before:absolute before:left-4 lg:before:content-none">
                 <span className="lg:hidden font-bold">Acciones: </span>
-                <button
-                  type="button"
-                  className="text-red-500 hover:text-red-600 text-xl"
-                  // onClick={() => deleteItem(item.id)}
-                >
-                  <FaRegTrashAlt />
-                </button>
+                <ButtonDelete id={item.id} />
               </td>
             </tr>
           ))}
