@@ -1,25 +1,8 @@
 import { FaPlus } from "react-icons/fa6";
-import { ItemList } from "./interfaces";
+import getItems from "./useListLogic";
 import Table from "@/app/Components/Table";
 import ButtonLink from "@/app/Components/ButtonLink";
 import Title from "../form/Components/Title";
-
-const getItems = async () => {
-  const response = await fetch(
-    "https://boxfulbackend.houdini-21.me/form-state-item"
-  ).then((res) => res.json());
-
-  const items = response.map((item: ItemList) => ({
-    id: item.id,
-    nombreCliente: `${item.firstName} ${item.lastName}`,
-    direccion: item.address,
-    correoElectronico: item.email,
-    telefono: item.phone,
-    cantidadBultos: item.listBox.length,
-  }));
-
-  return items;
-};
 
 export default async function ListPage() {
   const tableItems = await getItems();
