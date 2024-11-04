@@ -15,6 +15,8 @@ export default function Step2Page({
   updateListBox,
   handleRemoveListBox,
   dispatch,
+  sendDataToServer,
+  loading,
 }: Step2Props) {
   return (
     <div className="w-full flex flex-col lg:p-4 p-0">
@@ -133,8 +135,8 @@ export default function Step2Page({
           color="bg-blue-600"
           icon={<FaArrowRight className="text-xl" />}
           iconDirection="right"
-          onClick={() => console.log("next")}
-          loading={false}
+          onClick={sendDataToServer}
+          loading={loading}
           className="lg:w-1/12 w-full"
         />
       </div>

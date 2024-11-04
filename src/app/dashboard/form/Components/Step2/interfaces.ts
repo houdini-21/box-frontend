@@ -14,6 +14,8 @@ export interface Step2Props {
   handleRemoveListBox: (index: number) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dispatch: (action: any) => void;
+  sendDataToServer: () => void;
+  loading: boolean;
 }
 
 export interface ListBoxItemProps {

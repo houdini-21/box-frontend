@@ -11,8 +11,14 @@ const StepsPrincipal = () => {
   const currentStep = useAppSelector((state) => state.step.step);
 
   const { formikStep1, departments, getMunicipality } = useStep1Logic();
-  const { productsList, formikStep2, updateListBox, handleRemoveListBox } =
-    useStep2Logic();
+  const {
+    productsList,
+    formikStep2,
+    updateListBox,
+    handleRemoveListBox,
+    sendDataToServer,
+    loading,
+  } = useStep2Logic();
   const optionsMunicipality = getMunicipality(
     formikStep1.values.department.value
   );
@@ -48,6 +54,8 @@ const StepsPrincipal = () => {
             updateListBox={updateListBox}
             handleRemoveListBox={handleRemoveListBox}
             dispatch={dispatch}
+            sendDataToServer={sendDataToServer}
+            loading={loading}
           />
         </motion.div>
       )}
