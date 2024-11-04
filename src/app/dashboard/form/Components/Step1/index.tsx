@@ -1,12 +1,13 @@
 "use client";
 import { MdLocationOn } from "react-icons/md";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { OptionsProps, Step1Props } from "./interfaces";
 import TextField from "@/app/Components/TextField";
 import SelectField from "@/app/Components/SelectField";
 import DateField from "@/app/Components/DateField";
 import PhoneField from "@/app/Components/PhoneField";
 import Button from "@/app/Components/Button";
-import { OptionsProps, Step1Props } from "./interfaces";
+import ButtonLink from "@/app/Components/ButtonLink";
 
 const Step1 = ({ formik, departments, optionsMunicipality }: Step1Props) => {
   return (
@@ -152,16 +153,25 @@ const Step1 = ({ formik, departments, optionsMunicipality }: Step1Props) => {
           className="w-full"
         />
       </div>
-
-      <Button
-        text="Siguiente"
-        color="bg-blue-600"
-        icon={<FaArrowRight className="text-xl" />}
-        iconDirection="right"
-        onClick={() => formik.handleSubmit()}
-        loading={false}
-        className="lg:w-1/12 w-full mt-12 lg:self-end"
-      />
+      <div className="w-full flex flex-row lg:flex-nowrap flex-wrap justify-between gap-x-6 mt-4">
+        <ButtonLink
+          href="/dashboard/list"
+          text="Regresar"
+          color="bg-gray-200 text-zinc-500"
+          icon={<FaArrowLeft className="text-xl" />}
+          iconDirection="left"
+          className="lg:w-1/12 w-full mt-12"
+        />
+        <Button
+          text="Siguiente"
+          color="bg-blue-600"
+          icon={<FaArrowRight className="text-xl" />}
+          iconDirection="right"
+          onClick={() => formik.handleSubmit()}
+          loading={false}
+          className="lg:w-1/12 w-full mt-12 "
+        />
+      </div>
     </div>
   );
 };

@@ -1,6 +1,4 @@
-"use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import classNames from "classnames";
 import { CgSpinner } from "react-icons/cg";
 
@@ -29,18 +27,10 @@ const ButtonLink = ({
   href,
   isGoBack = false,
 }: ButtonProps) => {
-  const router = useRouter();
   return justIcon ? (
     <Link
       prefetch
       href={href}
-      onClick={
-        isGoBack
-          ? () => router.back()
-          : (e) => {
-              e.preventDefault();
-            }
-      }
       className={classNames(
         "flex items-center justify-center p-3 rounded-md  font-medium transition-colors duration-300",
         color,
@@ -57,13 +47,6 @@ const ButtonLink = ({
     <Link
       href={href}
       prefetch
-      onClick={
-        isGoBack
-          ? () => router.back()
-          : (e) => {
-              e.preventDefault();
-            }
-      }
       className={classNames(
         "flex items-center justify-center p-4 rounded-md  font-medium transition-colors duration-300",
         color,

@@ -21,7 +21,7 @@ export default function NotFound() {
           color="bg-orange-500"
           icon={<FaArrowLeft className="text-xl" />}
           iconDirection="left"
-          href="#"
+          href="/"
           isGoBack
           className="lg:w-2/12 w-full mt-16"
         />
