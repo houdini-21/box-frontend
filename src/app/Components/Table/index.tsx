@@ -8,6 +8,9 @@ const Table = ({ tableItems }: TablePropsList) => {
         <thead>
           <tr>
             <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+              ID
+            </th>
+            <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
               Nombre Cliente
             </th>
             <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
@@ -33,6 +36,10 @@ const Table = ({ tableItems }: TablePropsList) => {
               key={item.id}
               className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0"
             >
+              <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static before:content-[attr(data-label)] before:text-gray-500 before:absolute before:left-4 lg:before:content-none">
+                <span className="lg:hidden font-bold">ID: </span>
+                {item.id}
+              </td>
               <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static before:content-[attr(data-label)] before:text-gray-500 before:absolute before:left-4 lg:before:content-none">
                 <span className="lg:hidden font-bold">Nombre Cliente: </span>
                 {item.nombreCliente}
