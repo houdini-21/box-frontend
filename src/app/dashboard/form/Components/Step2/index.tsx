@@ -2,19 +2,12 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { RiBox3Fill } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa6";
+import { ItemListProps, Step2Props } from "./interfaces";
 import { prvStep } from "@/Store/Step/stepSlice";
 import ListBoxItem from "./ListBoxItem";
 import MultipleTextField from "@/app/Components/MultipleTextField";
 import TextField from "@/app/Components/TextField";
 import Button from "@/app/Components/Button";
-
-interface Step2Props {
-  formik: any;
-  productsList: any;
-  updateListBox: any;
-  handleRemoveListBox: any;
-  dispatch: (arg0: any) => void;
-}
 
 export default function Step2Page({
   formik,
@@ -110,7 +103,7 @@ export default function Step2Page({
         </label>
 
         {productsList && productsList.length > 0 ? (
-          productsList.map((item: any, index: number) => (
+          productsList.map((item: ItemListProps, index: number) => (
             <ListBoxItem
               key={index}
               item={item}

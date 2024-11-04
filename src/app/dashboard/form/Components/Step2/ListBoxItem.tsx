@@ -1,15 +1,9 @@
 import { RiBox3Fill } from "react-icons/ri";
 import { FaTrashAlt } from "react-icons/fa";
+import { ListBoxItemProps } from "./interfaces";
 import MultipleTextField from "@/app/Components/MultipleTextField";
 import TextField from "@/app/Components/TextField";
 import Button from "@/app/Components/Button";
-
-interface ListBoxItemProps {
-  item: any;
-  index: number;
-  updateListBox: (index: number, data: any) => void;
-  handleRemoveListBox: (index: number) => void;
-}
 
 const ListBoxItem = ({
   item,
@@ -30,10 +24,10 @@ const ListBoxItem = ({
           onChange={(value) =>
             updateListBox(index, {
               ...item,
-              weight: value.target.value,
+              weight: parseInt(value.target.value),
             })
           }
-          type="text"
+          type="number"
           className="lg:w-1/12 w-full"
           value={item.weight}
           error={false}
@@ -68,9 +62,9 @@ const ListBoxItem = ({
                 onChange: (value) =>
                   updateListBox(index, {
                     ...item,
-                    lengthValue: value.target.value,
+                    lengthValue: parseInt(value.target.value),
                   }),
-                type: "text",
+                type: "number",
                 measure: "cm",
                 inputValue: item.lengthValue,
               },
@@ -81,9 +75,9 @@ const ListBoxItem = ({
                 onChange: (value) =>
                   updateListBox(index, {
                     ...item,
-                    height: value.target.value,
+                    height: parseInt(value.target.value),
                   }),
-                type: "text",
+                type: "number",
                 measure: "cm",
                 inputValue: item.height,
               },
@@ -94,9 +88,9 @@ const ListBoxItem = ({
                 onChange: (value) =>
                   updateListBox(index, {
                     ...item,
-                    width: value.target.value,
+                    width: parseInt(value.target.value),
                   }),
-                type: "text",
+                type: "number",
                 measure: "cm",
                 inputValue: item.width,
               },

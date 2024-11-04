@@ -1,20 +1,10 @@
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
+import { Departmentos } from "./interfaces";
 import { useAppDispatch, useAppSelector } from "@/Store";
 import { updateForm } from "@/Store/Form/formSlice";
 import { nxtStep } from "@/Store/Step/stepSlice";
 import validationSchema from "./validation";
-
-interface Municipios {
-  id_mun: string;
-  nombre: string;
-}
-
-interface Departmentos {
-  id: string;
-  nombre: string;
-  municipios: Municipios[];
-}
 
 export const useStep1Logic = () => {
   const [departments, setDepartments] = useState<Departmentos[]>([]);
@@ -60,7 +50,9 @@ export const useStep1Logic = () => {
       (dep) => dep.id === departmentId
     );
 
-    return departmentSelected?.municipios.map((municipio) => ({
+    if (!departmentSelected) return [];
+
+    return departmentSelected.municipios.map((municipio) => ({
       value: municipio.id_mun,
       label: municipio.nombre,
     }));
@@ -81,6 +73,8 @@ export const useStep1Logic = () => {
 
   useEffect(() => {
     getDepartment();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { formikStep1, departments, getMunicipality };

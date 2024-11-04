@@ -2,33 +2,27 @@ import { useState, useCallback } from "react";
 import { debounce } from "lodash";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
+import { ItemListProps } from "./interfaces";
 import { useAppDispatch, useAppSelector } from "@/Store";
 import { addListBox, editListBox, removeListBox } from "@/Store/Form/formSlice";
-
-interface ListBoxItemProps {
-  weight: number;
-  content: string;
-  lengthValue: number;
-  height: number;
-  width: number;
-}
 
 export function useStep2Logic() {
   const dispatch = useAppDispatch();
   const listBox = useAppSelector((state) => state.form.form.listBox);
 
-  const [productsList, setProductsList] = useState<ListBoxItemProps[]>(
+  const [productsList, setProductsList] = useState<ItemListProps[]>(
     listBox || []
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedUpdate = useCallback(
-    debounce((index: number, data: any) => {
+    debounce((index: number, data: ItemListProps) => {
       dispatch(editListBox({ index, data }));
     }, 5000),
     []
   );
 
-  const updateListBox = (index: number, data: ListBoxItemProps) => {
+  const updateListBox = (index: number, data: ItemListProps) => {
     if (data.lengthValue <= 0) {
       toast.error("El largo debe ser mayor a 0");
       return;

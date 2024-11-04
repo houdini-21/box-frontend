@@ -82,6 +82,7 @@ const SelectField = ({
             },
           }),
         }}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onChange={onChange as any}
         className={classNames("font-medium border-none", {
           "react-select-error": error,

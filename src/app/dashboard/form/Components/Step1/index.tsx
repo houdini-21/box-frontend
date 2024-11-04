@@ -6,17 +6,7 @@ import SelectField from "@/app/Components/SelectField";
 import DateField from "@/app/Components/DateField";
 import PhoneField from "@/app/Components/PhoneField";
 import Button from "@/app/Components/Button";
-
-interface optionsProps {
-  id: string;
-  nombre: string;
-}
-
-interface Step1Props {
-  formik: any;
-  departments: any;
-  optionsMunicipality: any;
-}
+import { OptionsProps, Step1Props } from "./interfaces";
 
 const Step1 = ({ formik, departments, optionsMunicipality }: Step1Props) => {
   return (
@@ -110,7 +100,7 @@ const Step1 = ({ formik, departments, optionsMunicipality }: Step1Props) => {
         <SelectField
           nameInput="departamento"
           label="Departamento"
-          options={departments.map((department: optionsProps) => ({
+          options={departments.map((department: OptionsProps) => ({
             value: department.id,
             label: department.nombre,
           }))}
