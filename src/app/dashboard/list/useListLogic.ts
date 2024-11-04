@@ -2,7 +2,10 @@ import { ItemList } from "./interfaces";
 
 const getItems = async () => {
   const response = await fetch(
-    "https://boxfulbackend.houdini-21.me/form-state-item"
+    "https://boxfulbackend.houdini-21.me/form-state-item",
+    {
+      cache: "no-cache",
+    }
   ).then((res) => res.json());
 
   const items = response.map((item: ItemList) => ({

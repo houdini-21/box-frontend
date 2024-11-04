@@ -13,7 +13,7 @@ export default async function ListPage() {
           title="Lista de Ordenes"
           subTitle={
             <>
-              Dale una ventaja competitiva a tu negocio con entregas
+              Da una ventaja competitiva a tu negocio con entregas
               <span className="font-bold"> el mismo día</span> y (Área
               Metropolitana) y
               <span className="font-bold"> el día siguiente </span>a nivel
