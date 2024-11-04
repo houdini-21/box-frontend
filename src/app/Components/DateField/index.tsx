@@ -45,6 +45,7 @@ const DateField: React.FC<DateFieldProps> = ({
           <MdCalendarMonth className="text-gray-500" size={24} />
         </div>
         <DatePicker
+          minDate={new Date()}
           selected={selectedDate}
           onChange={(date) => {
             setIsFocused(false);
